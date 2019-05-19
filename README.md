@@ -27,6 +27,8 @@ Result :
 
 // { method: 'print', args: [], object: //same object }
 
+// foo fighters
+
 // { method: 'print', args: [], result: 'foo fighters', object: //same object }
 
 Or for example, you can use it to evaluate the time that every function takes to run or send parameter with every function names to a log resource or even log every exception
