@@ -45,12 +45,11 @@ describe("decorator-basics", function() {
     let obj = {
       name: "foo",
       print(preText) {
-        return this.name;
+        return preText + ' ' + this.name;
       }
     };
-    let afterCall = null;
-    obj = decorate(obj, (res) => { if(res.args[0].indexOf('hi') > -1) throw'you cant use `hi` here!' }, (res) => { afterCall = res; });
-    obj.print('hi');
-    expect(afterCall.result).toEqual(null);
+    obj = decorate(obj, (res) => { if(res.args[0].indexOf('hi') > -1) throw'you cant use `hi` here!' });
+    let printedName = obj.print('hi');
+    expect(printedName).toEqual(undefined);
   });
 });

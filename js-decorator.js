@@ -22,6 +22,7 @@ function decorate(obj, beforeCall, afterCall, onException) {
           try {
             beforeCall && beforeCall({ method: x, args, object: this });
             result = innerMethod(args);
+            return result;
           } catch (error) {
             onException && onException({ method: x, error, object: this });
           } finally {
