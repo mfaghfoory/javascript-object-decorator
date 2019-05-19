@@ -37,14 +37,3 @@ function decorate(obj, beforeCall, afterCall, onCall, onException) {
   return obj;
 }
 module.exports = decorate;
-
-let product = {
-  name: "tv",
-  price: 600,
-  printInfo() {
-    console.log(`${this.name}-${this.price}$`);
-  },
-  logToDb() {
-    //send this object to db
-  }
-};
