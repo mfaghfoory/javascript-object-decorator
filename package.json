@@ -1,0 +1,19 @@
+{
+  "name": "javascript-runtime-decorator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "javascript",
+    "decorator",
+    "design",
+    "pattern"
+  ],
+  "author": "meysam faghfouri",
+  "devDependencies": {
+    "jasmine-node": "^1.16.2"
+  }
+}
