@@ -20,12 +20,12 @@ function decorate(obj, beforeCall, afterCall, onException) {
         obj[x] = function(...args) {
           let result = null;
           try {
-            beforeCall && beforeCall({ method: x, args });
+            beforeCall && beforeCall({ method: x, args, object: this });
             result = innerMethod(args);
           } catch (error) {
-            onException && onException({ error });
+            onException && onException({ error, object: this });
           } finally {
-            afterCall && afterCall({ method: x, args, result });
+            afterCall && afterCall({ method: x, args, result, object: this });
           }
         };
       }

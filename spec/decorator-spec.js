@@ -9,7 +9,7 @@ describe("decorator-basics", function() {
       }
     };
     let afterCall = null;
-    obj = decorate(obj, (res) => {}, (res) => { afterCall = res; });
+    obj = decorate(obj, (res) => { }, (res) => { afterCall = res; });
     obj.print();
     expect(obj.name).toEqual(afterCall.result);
   });
