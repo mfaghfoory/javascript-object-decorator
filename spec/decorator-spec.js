@@ -40,4 +40,17 @@ describe("decorator-basics", function() {
     obj.print('hi');
     expect(exceptionResult.toString()).toEqual('error raised!');
   });
+
+  it("should prevent send hi to print method", function() {
+    let obj = {
+      name: "foo",
+      print(preText) {
+        return this.name;
+      }
+    };
+    let afterCall = null;
+    obj = decorate(obj, (res) => { if(res.args[0].indexOf('hi') > -1) throw'you cant use `hi` here!' }, (res) => { afterCall = res; });
+    obj.print('hi');
+    expect(afterCall.result).toEqual(null);
+  });
 });
