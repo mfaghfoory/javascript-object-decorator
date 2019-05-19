@@ -9,7 +9,7 @@ describe("decorator-basics", function() {
       }
     };
     let afterCall = null;
-    obj = decorate(obj, (res) => { }, (res) => { afterCall = res; });
+    obj = decorate(obj, null, (res) => { afterCall = res; });
     obj.print();
     expect(obj.name).toEqual(afterCall.result);
   });
@@ -36,7 +36,7 @@ describe("decorator-basics", function() {
       }
     };
     let exceptionResult = null;
-    obj = decorate(obj, (res) => { }, (res) => { }, (err) => {exceptionResult = err.error;});
+    obj = decorate(obj, null, null, null, (err) => {exceptionResult = err.error;});
     obj.print('hi');
     expect(exceptionResult.toString()).toEqual('error raised!');
   });
@@ -52,4 +52,19 @@ describe("decorator-basics", function() {
     let printedName = obj.print('hi');
     expect(printedName).toEqual(undefined);
   });
+
+  it("should change the result of the method", function() {
+    let obj = {
+      name: "foo",
+      print(preText) {
+        return preText + ' ' + this.name;
+      }
+    };
+    obj = decorate(obj, null, null, (mainFunc, args) => {
+      return `--${mainFunc(args)}--`
+    });
+    let printedName = obj.print('hi');
+    expect(printedName).toEqual('--hi foo--');
+  });
+
 });
