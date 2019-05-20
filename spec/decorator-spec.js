@@ -60,11 +60,22 @@ describe("decorator-basics", function() {
         return preText + ' ' + this.name;
       }
     };
-    obj = decorate(obj, null, null, (mainFunc, args) => {
+    obj = decorate(obj, null, null, (mainFunc, ...args) => {
       return `--${mainFunc(args)}--`
     });
     let printedName = obj.print('hi');
     expect(printedName).toEqual('--hi foo--');
   });
+  
+  it("should apply several arguments", function() {
+      let obj = {
+        print(arg1, arg2) {
+          return arg1 + ' ' + arg2;
+        }
+      };
+      obj = decorate(obj);
+      let printedName = obj.print('hello', 'world');
+      expect(printedName).toEqual('hello world');
+    });
 
 });

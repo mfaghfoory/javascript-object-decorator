@@ -23,7 +23,7 @@ function decorate(obj, beforeCall, afterCall, onCall, onException) {
           let result = null;
           try {
             beforeCall && beforeCall({ method: x, args, object: this });
-            result = onCall ? onCall(innerMethod, args) : innerMethod(args);
+            result = onCall ? onCall(innerMethod, args) : innerMethod(...args);
             return result;
           } catch (error) {
             onException && onException({ method: x, error, object: this });
